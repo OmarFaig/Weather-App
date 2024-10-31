@@ -22,7 +22,7 @@ namespace WeatherAppGUI
 
             // Ensure the request was successful
             response.EnsureSuccessStatusCode();
-
+            Console.WriteLine(response.Content);
             // Return the response content as a string
             return await response.Content.ReadAsStringAsync();
         }
