@@ -7,31 +7,68 @@ namespace WeatherAppGUI
 {
     public class WeatherData
     {
-        public Coord coord { get; set; }
-        public List<Weather> weather { get; set; }
-        public string? @base { get; set; }
-        public Main main { get; set; }
-        public int? visibility { get; set; }
-        public Wind wind { get; set; }
-        public Rain rain { get; set; }
-        public Clouds clouds { get; set; }
-        public int? dt { get; set; }
-        public Sys sys { get; set; }
-        public int? timezone { get; set; }
-        public int? id { get; set; }
-        public string? name { get; set; }
-        public int? cod { get; set; }
-    }
-    public class Clouds
+        public double latitude { get; set; }
+        public double longitude { get; set; }
+        public double generationtime_ms { get; set; }
+        public int utc_offset_seconds { get; set; }
+        public string timezone { get; set; }
+        public string timezone_abbreviation { get; set; }
+        public double elevation { get; set; }
+        public CurrentUnits current_units { get; set; }
+        public Current current { get; set; }
+        public HourlyUnits hourly_units { get; set; }
+        public Hourly hourly { get; set; }
+        public DailyUnits daily_units { get; set; }
+        public Daily daily { get; set; }
+    }    public class Current
     {
-        public int? all { get; set; }
+        public string time { get; set; }
+        public int interval { get; set; }
+        public double temperature_2m { get; set; }
+        public double apparent_temperature { get; set; }
+        public int is_day { get; set; }
+        public double wind_speed_10m { get; set; }
+        public int wind_direction_10m { get; set; }
     }
 
-    public class Coord
+    public class CurrentUnits
     {
-        public double? lon { get; set; }
-        public double? lat { get; set; }
+        public string time { get; set; }
+        public string interval { get; set; }
+        public string temperature_2m { get; set; }
+        public string apparent_temperature { get; set; }
+        public string is_day { get; set; }
+        public string wind_speed_10m { get; set; }
+        public string wind_direction_10m { get; set; }
     }
+
+    public class Daily
+    {
+        public List<string> time { get; set; }
+        public List<string> sunrise { get; set; }
+        public List<string> sunset { get; set; }
+    }
+
+    public class DailyUnits
+    {
+        public string time { get; set; }
+        public string sunrise { get; set; }
+        public string sunset { get; set; }
+    }
+
+    public class Hourly
+    {
+        public List<string> time { get; set; }
+        public List<double> temperature_2m { get; set; }
+    }
+
+    public class HourlyUnits
+    {
+        public string time { get; set; }
+        public string temperature_2m { get; set; }
+    }
+
+
 
     public class Main
     {
@@ -45,35 +82,4 @@ namespace WeatherAppGUI
         public int? grnd_level { get; set; }
     }
 
-    public class Rain
-    {
-        [JsonProperty("1h")]
-        public double? _1h { get; set; }
-    }
-
-
-
-    public class Sys
-    {
-        public int? type { get; set; }
-        public int? id { get; set; }
-        public string? country { get; set; }
-        public int? sunrise { get; set; }
-        public int? sunset { get; set; }
-    }
-
-    public class Weather
-    {
-        public int? id { get; set; }
-        public string? main { get; set; }
-        public string? description { get; set; }
-        public string? icon { get; set; }
-    }
-
-    public class Wind
-    {
-        public double? speed { get; set; }
-        public int? deg { get; set; }
-        public double? gust { get; set; }
-    }
 }
