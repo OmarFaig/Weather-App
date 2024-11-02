@@ -1,6 +1,5 @@
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace WeatherAppGUI
 {
@@ -10,6 +9,7 @@ namespace WeatherAppGUI
         private string? _description;
         private string? _humidity;
         private string? _windSpeed;
+        private List<DailyWeather> _dailyWeather;
 
         public string? Temperature
         {
@@ -51,27 +51,29 @@ namespace WeatherAppGUI
             }
         }
 
-        // PropertyChanged event implementation
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public List<DailyWeather> DailyWeather
+        {
+            get => _dailyWeather;
+            set
+            {
+                _dailyWeather = value;
+                OnPropertyChanged(nameof(DailyWeather));
+            }
+        }
 
-        protected virtual void OnPropertyChanged(string? propertyName)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        // Sample data for testing
-      //public MainWindowViewModel()
-      //{
-      //    Temperature = "25°C";
-      //    Description = "Clear Sky";
-      //    Humidity = "40%";
-      //    WindSpeed = "10 km/h";
-      //}
-      // protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-      // {
-      //     if (EqualityComparer<T>.Default.Equals(field, value)) return false;
-      //     field = value;
-      //     OnPropertyChanged(propertyName);
-      //     return true;
-      // }
+    }
+
+    public class DailyWeather
+    {
+        public string Day { get; set; }
+        public string Temperature { get; set; }
+        public string Sunrise { get; set; }
+        public string Sunset { get; set; }
     }
 }

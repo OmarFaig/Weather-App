@@ -1,4 +1,3 @@
-// Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 using Newtonsoft.Json;
 using System.Net.Http;  // For HttpClient
 using System.Collections.Generic;  // For List<>

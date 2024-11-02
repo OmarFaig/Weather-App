@@ -1,6 +1,8 @@
 using Avalonia.Controls;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -8,10 +10,6 @@ namespace WeatherAppGUI
 {
     public partial class MainWindow : Window
     {
-        public string? Temperature { get; set; }
-        public string? Description { get; set; }
-        public string? Humidity { get; set; }
-        public string? WindSpeed { get; set; }
         private readonly MainWindowViewModel _viewModel;
 
         public MainWindow()
@@ -37,13 +35,26 @@ namespace WeatherAppGUI
                 _viewModel.Humidity = $"Day/Night: {weatherData.current.is_day}%";
                 _viewModel.WindSpeed = $"Wind Speed: {weatherData.current.wind_speed_10m} m/s";
 
+                // Update the daily weather data
+                var dailyWeather = new List<DailyWeather>();
+                for (int i = 0; i < weatherData.daily.time.Count; i++)
+                {
+                    dailyWeather.Add(new DailyWeather
+                    {
+                        Day = weatherData.daily.time[i],
+                        Temperature = $"{weatherData.hourly.temperature_2m[i]}°C",
+                        Sunrise = weatherData.daily.sunrise[i],
+                        Sunset = weatherData.daily.sunset[i]
+                    });
+                    Console.WriteLine($"Day {i + 1}: {weatherData.daily.time[i]}, Temperature: {weatherData.hourly.temperature_2m[i]}°C, Sunrise: {weatherData.daily.sunrise[i]}, Sunset: {weatherData.daily.sunset[i]}");
+                }
+
+                _viewModel.DailyWeather = dailyWeather;
+
                 Console.WriteLine("Temperature " + _viewModel.Temperature);
                 Console.WriteLine("Description " + _viewModel.Description);
                 Console.WriteLine("Humidity " + _viewModel.Humidity);
                 Console.WriteLine("WindSpeed " + _viewModel.WindSpeed);
-                // Trigger the UI to update
-                //this.DataContext = null;
-                // this.DataContext = this;
             }
             catch (Exception ex)
             {
