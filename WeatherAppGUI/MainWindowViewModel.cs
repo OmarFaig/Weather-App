@@ -6,8 +6,7 @@ namespace WeatherAppGUI
     public class MainWindowViewModel : INotifyPropertyChanged
     {
         private string? _temperature;
-        private string? _description;
-        private string? _humidity;
+        private string? _apparentTemperature;
         private string? _windSpeed;
         private List<DailyWeather> _dailyWeather;
 
@@ -21,25 +20,16 @@ namespace WeatherAppGUI
             }
         }
 
-        public string? Description
+        public string? ApparentTemperature
         {
-            get => _description;
+            get => _apparentTemperature;
             set
             {
-                _description = value;
-                OnPropertyChanged(nameof(Description));
+                _apparentTemperature = value;
+                OnPropertyChanged(nameof(_apparentTemperature));
             }
         }
 
-        public string? Humidity
-        {
-            get => _humidity;
-            set
-            {
-                _humidity = value;
-                OnPropertyChanged(nameof(Humidity));
-            }
-        }
 
         public string? WindSpeed
         {
@@ -73,6 +63,9 @@ namespace WeatherAppGUI
     {
         public string Day { get; set; }
         public string Temperature { get; set; }
+        public string ApparentTemperature { get; set; }
+        public string WindSpeed { get; set; }
+
         public string Sunrise { get; set; }
         public string Sunset { get; set; }
     }

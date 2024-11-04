@@ -30,9 +30,8 @@ namespace WeatherAppGUI
                 WeatherData weatherData = JsonConvert.DeserializeObject<WeatherData>(json);
 
                 // Update the ViewModel properties, which will automatically update the UI
-                _viewModel.Temperature = $"Temperature: {weatherData.current.temperature_2m}°C";
-                _viewModel.Description = $"Description: {weatherData.current.apparent_temperature}°C";
-                _viewModel.Humidity = $"Day/Night: {weatherData.current.is_day}%";
+                _viewModel.Temperature = $"Current Temperature: {weatherData.current.temperature_2m}°C";
+                _viewModel.ApparentTemperature = $"Apparent temperature: {weatherData.current.apparent_temperature}°C";
                 _viewModel.WindSpeed = $"Wind Speed: {weatherData.current.wind_speed_10m} m/s";
 
                 // Update the daily weather data
@@ -43,6 +42,7 @@ namespace WeatherAppGUI
                     {
                         Day = weatherData.daily.time[i],
                         Temperature = $"{weatherData.hourly.temperature_2m[i]}°C",
+                        ApparentTemperature = $"{weatherData.current.apparent_temperature}°C",
                         Sunrise = weatherData.daily.sunrise[i],
                         Sunset = weatherData.daily.sunset[i]
                     });
@@ -50,11 +50,11 @@ namespace WeatherAppGUI
                 }
 
                 _viewModel.DailyWeather = dailyWeather;
-
-                Console.WriteLine("Temperature " + _viewModel.Temperature);
-                Console.WriteLine("Description " + _viewModel.Description);
-                Console.WriteLine("Humidity " + _viewModel.Humidity);
-                Console.WriteLine("WindSpeed " + _viewModel.WindSpeed);
+                //
+                //     Console.WriteLine("Temperature " + _viewModel.Temperature);
+                //     Console.WriteLine("Description " + _viewModel.Description);
+                //     Console.WriteLine("Humidity " + _viewModel.Humidity);
+                //     Console.WriteLine("WindSpeed " + _viewModel.WindSpeed);
             }
             catch (Exception ex)
             {
