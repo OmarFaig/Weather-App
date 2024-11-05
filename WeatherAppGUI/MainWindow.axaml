@@ -4,48 +4,9 @@
         xmlns:local="clr-namespace:WeatherAppGUI"
         x:DataType="local:MainWindowViewModel"
         Title="Weather App" Width="800" Height="600"
-        Background="#001f3f">
-    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding DailyWeather}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                <StackPanel Margin="5" Background="#003366">
-                    <TextBlock Text="{Binding Day}" FontSize="16" FontWeight="Bold" Foreground="White"/>
-                    <TextBlock FontSize="14" Foreground="White">
-                        <Run Text="Temperature: "/>
-                        <Run Text="{Binding Temperature}"/>
-                    </TextBlock>  
-                    <TextBlock FontSize="14" Foreground="White">
-                        <Run Text="Apparent Temperature: "/>
-                        <Run Text="{Binding ApparentTemperature}"/>
-                    </TextBlock>
-                    <TextBlock FontSize="14" Foreground="White">
-                        <Run Text="Sunrise: "/>
-                        <Run Text="{Binding Sunrise}"/>
-                    </TextBlock>
-                    <TextBlock FontSize="14" Foreground="White">
-                        <Run Text="Sunset: "/>
-                        <Run Text="{Binding Sunset}"/>
-                    </TextBlock>
-                    <TextBlock FontSize="14" Foreground="Purple">
-                        <Run Text="AI Prediction: "/>
-                    </TextBlock>
-                </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </Grid>
+        Background="#c5ddff">
+	
+	<Grid>
+		
+	</Grid>
 </Window>
