@@ -5,6 +5,12 @@
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
-        <FluentTheme />
-    </Application.Styles>
+        <FluentTheme/>
+		<StyleInclude Source="/LargeTemperatureControl.axaml"></StyleInclude>
+	</Application.Styles>
+	
+	<Application.Resources>
+		<SolidColorBrush x:Key="SkyBlueBrush">#c5ddff</SolidColorBrush>		
+	    <SolidColorBrush x:Key="WhiteBrush">#ffffff</SolidColorBrush>
+	</Application.Resources>
 </Application>

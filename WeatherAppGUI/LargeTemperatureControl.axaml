@@ -2,26 +2,45 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:WeatherAppGUI">
 
-	<!--
-    Additional resources 
-    Using Control Themes:
-         https://docs.avaloniaui.net/docs/basics/user-interface/styling/control-themes
-    Using Theme Variants:
-         https://docs.avaloniaui.net/docs/guides/styles-and-resources/how-to-use-theme-variants
-  -->
-
 	<Design.PreviewWith>
 		<StackPanel>
-			<controls:LargeTemperatureControl />
+			<controls:LargeTemperatureControl Temperature="55" />
+			<controls:SmallGadgetControl Label="Humidity" Value="60%" />
+
+
 		</StackPanel>
 	</Design.PreviewWith>
 
+	<!-- Style for LargeTemperatureControl -->
 	<Style Selector="controls|LargeTemperatureControl">
+		<Setter Property="Background" Value="{DynamicResource ResourceKey=WhiteBrush}"></Setter>
+		<Setter Property="Foreground" Value="Black"></Setter>
 		<Setter Property="Template">
 			<ControlTemplate>
-				<TextBlock Text="Templated Control" />
+				<Border Background="{TemplateBinding Background}">
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+						<Label HorizontalAlignment="Center" FontSize="60" Content="{TemplateBinding Temperature}" Margin="0,0,0,0" />
+						<TextBlock FontSize="30" Text="°C" VerticalAlignment="Top" Margin="2,8,0,0" />
+					</StackPanel>
+				</Border>
 			</ControlTemplate>
 		</Setter>
 	</Style>
 
+
+	<!-- Style for SmallGadgetControl -->
+	<Style Selector="controls|SmallGadgetControl">
+		<Setter Property="Background" Value="{DynamicResource ResourceKey=WhiteBrush}"></Setter>
+		<Setter Property="Foreground" Value="Black"></Setter>
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Border Background="{TemplateBinding Background}">
+					<StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center">
+						<TextBlock FontSize="12" Text="{TemplateBinding Label}" Margin="5,0,5,0" />
+						<TextBlock FontSize="10" Text="{TemplateBinding Value}" HorizontalAlignment="Center" Margin="5,0,5,0" />
+					</StackPanel>
+				</Border>
+			</ControlTemplate>
+		</Setter>
+	</Style>
 </Styles>

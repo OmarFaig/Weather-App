@@ -2,99 +2,71 @@
         xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:WeatherAppGUI"
+        xmlns:controls="clr-namespace:WeatherAppGUI"
         x:DataType="local:MainWindowViewModel"
-        Title="Weather App" Width="800" Height="600"
-        Background="#c5ddff">
+        Title="Weather App" Width="800" Height="800">
 	<Window.Styles>
-		<Style Selector="Label">
-			<Setter Property="FontSize" Value="20"/>
-				
-			</Style>
+		<Style Selector="Window">
+			<Setter Property="Background" Value="{DynamicResource ResourceKey=SkyBlueBrush}"/>
+		</Style>
 	</Window.Styles>
-	
-	
-<Grid RowDefinitions="Auto,Auto, Auto,Auto">
-	<!--Headers-->
-	<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto,Auto" Height="30">
-		<Label>Weather Forecast App</Label>
-			<Rectangle Grid.Column="1" Fill="Green" ></Rectangle>
+
+	<Grid RowDefinitions="Auto,Auto,Auto,Auto">
+		<!--Headers-->
+		<Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto,Auto" Height="30">
+			<Label>Weather Forecast App</Label>
+			<Rectangle Grid.Column="1" Fill="Green"></Rectangle>
 			<Rectangle Grid.Column="2" Fill="Yellow" Width="50"></Rectangle>
 			<Rectangle Grid.Column="3" Fill="Red" Width="50"></Rectangle>
 			<Rectangle Grid.Column="4" Fill="Orange" Width="100"></Rectangle>
-			
 		</Grid>
-	
-	<!-- WeatherRow -->
-	<Grid  Grid.Row="1" ColumnDefinitions="Auto,Auto" >
-		
-		<!--Forecast Weather-->
-		<Grid  Grid.Column="0" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Height="200"
-			   Background="White" Margin="5">
-			
-				<Label Grid.Row="0"  Name="CurrentWeatherLabel" HorizontalAlignment="Left" Height="40" FontSize="28" >
-				Current Weather
-			</Label>
-			
-			<Grid Grid.Row="1" RowDefinitions="Auto ,Auto, Auto"  >
-				<Image Grid.Column="0" Source="C:\Users\omerf\Source\Repos\OmarFaig\Weather-App\WeatherAppGUI\images\sunny.png" 
-					   HorizontalAlignment="Left" Width="80" Height="80"></Image>
 
-				<Label Grid.Column="1"   FontSize="60"  Margin="80,10,100,0" Content="{Binding Temperature}" ></Label>
-			<Label Grid.Column="2"   HorizontalAlignment="Right" FontSize="20">	Feels Like 10°C</Label>
-				
-			</Grid>
-			
-			<Label Grid.Row="2" >
-			Expect sunny skies. The high will be 76°.
-			</Label>
-			
-			<Grid Grid.Row="3" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto, Auto">
-				<Label Grid.Column="0"   HorizontalAlignment="Left" >
-					Pollen
+		<!-- WeatherRow -->
+		<Grid Grid.Row="1" ColumnDefinitions="Auto,Auto" Background="{DynamicResource ResourceKey=WhiteBrush}">
+			<!--Forecast Weather-->
+			<Grid Grid.Column="0" RowDefinitions="Auto,Auto,Auto,Auto,Auto" Height="200"
+                  Background="White" Margin="5">
+				<Label Grid.Row="0" Name="CurrentWeatherLabel" HorizontalAlignment="Left" Height="40" FontSize="28">
+					Current Weather
 				</Label>
-				<Label Grid.Column="1"   >
-				Wind
-				</Label>
-					<Label Grid.Column="2"    >
-				Humidity
-				</Label><Label Grid.Column="3"  >
-				Visibility
-				</Label>
-					<Label Grid.Column="4"    >
-				Pressure
-				</Label>
-				<Label Grid.Column="5" >
-				Dew Point
-				</Label>
-				<Grid.Styles>
-					<Style Selector="Label">
-					<Setter Property="FontSize" Value="15"/>
-						</Style>
-				</Grid.Styles>
+
+				<Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto">
+					<Image Grid.Column="0" Source="C:\Users\omerf\Source\Repos\OmarFaig\Weather-App\WeatherAppGUI\images\sunny.png"
+                           HorizontalAlignment="Left" Width="80" Height="80"/>
+					<StackPanel Grid.Column="1" Width="120"  Margin="0,0,20,0">
+						<controls:LargeTemperatureControl Temperature="13"/>
+					</StackPanel>
 					
+					<Label Grid.Column="2" HorizontalAlignment="Right" FontSize="20">Feels Like 10°C</Label>
 				</Grid>
-		
-		</Grid>
-		
-		
-			
-			
-		
-		<Label Grid.Column="1" Height="200" Width="400" Background="red" Margin="3">
+
+				<Label Grid.Row="2">
+					Expect sunny skies. The high will be 76°.
+				</Label>
+
+				<Grid Grid.Row="3" ColumnDefinitions="Auto,Auto,Auto,Auto,Auto,Auto">
+					<controls:SmallGadgetControl Grid.Column="0" Label="Humidity" Value="60%" />
+					<controls:SmallGadgetControl Grid.Column="1" Label="Wind" Value="15 km/h" />
+					<controls:SmallGadgetControl Grid.Column="2" Label="Pressure" Value="1013 hPa" />
+					<controls:SmallGadgetControl Grid.Column="3" Label="Visibility" Value="10 km" />
+					<controls:SmallGadgetControl Grid.Column="4" Label="UV Index" Value="5" />
+					<controls:SmallGadgetControl Grid.Column="5" Label="Dew Point" Value="10°C" />
+
+				
+				</Grid>
+
+			</Grid>
+
+			<Label Grid.Column="1" Height="200" Width="400" Background="red" Margin="3">
 				AI Prediction Weather
-	</Label>	
-			
+			</Label>
+		</Grid>
+
+		<Grid Grid.Row="2" RowDefinitions="Auto" Width="800">
+			<Rectangle Grid.Column="0" Fill="LightCoral" Height="150"></Rectangle>
+		</Grid>
+		<Grid Grid.Row="3" RowDefinitions="Auto" Width="800">
+			<Rectangle Grid.Column="0" Fill="DarkBlue" Height="150"></Rectangle>
+		</Grid>
 	</Grid>
-	
-	
-	<Grid  Grid.Row="2" RowDefinitions="Auto" Width="800">
-			<Rectangle  Grid.Column="0" Fill="LightCoral"  Height="150"></Rectangle>
-			
-	</Grid>
-		<Grid  Grid.Row="3" RowDefinitions="Auto" Width="800">
-			<Rectangle  Grid.Column="0" Fill="DarkBlue"  Height="150"></Rectangle>
-			
-	</Grid>
-		
-</Grid>
 </Window>
