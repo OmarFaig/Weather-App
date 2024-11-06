@@ -30,7 +30,7 @@ namespace WeatherAppGUI
                 WeatherData weatherData = JsonConvert.DeserializeObject<WeatherData>(json);
 
                 // Update the ViewModel properties, which will automatically update the UI
-                _viewModel.Temperature = $"Current Temperature: {weatherData.current.temperature_2m}°C";
+                _viewModel.Temperature = $"{weatherData.current.temperature_2m}°C";
                 _viewModel.ApparentTemperature = $"Apparent temperature: {weatherData.current.apparent_temperature}°C";
                 _viewModel.WindSpeed = $"Wind Speed: {weatherData.current.wind_speed_10m} m/s";
 
